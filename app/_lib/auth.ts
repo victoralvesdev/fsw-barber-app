@@ -12,7 +12,7 @@ export const authOptions: AuthOptions = {
     }),
   ],
   callbacks: {
-    async signIn({ user, account, profile }: { user: User; account: Account | null; profile?: Profile }) {
+    async signIn({ user }: { user: User; account: Account | null; profile?: Profile }) {
       // Criar/atualizar usuário no banco Supabase
       if (user.email) {
         try {
@@ -33,7 +33,7 @@ export const authOptions: AuthOptions = {
       }
       return true
     },
-    async session({ session, token }: { session: Session; token: JWT }) {
+    async session({ session }: { session: Session; token: JWT }) {
       if (session.user?.email) {
         const dbUser = await db.user.findUnique({
           where: { email: session.user.email },
@@ -47,7 +47,7 @@ export const authOptions: AuthOptions = {
       }
       return session
     },
-    async jwt({ token, user, account, profile }: { token: JWT; user?: User; account?: Account | null; profile?: Profile }) {
+    async jwt({ token }: { token: JWT; user?: User; account?: Account | null; profile?: Profile }) {
       return token
     },
   },
