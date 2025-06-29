@@ -67,7 +67,7 @@ const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
       }
     }
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (_e: React.ChangeEvent<HTMLInputElement>) => {
       // Não faz nada aqui para evitar loops
       // Toda lógica está no handleKeyDown
     }

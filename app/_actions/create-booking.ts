@@ -30,7 +30,7 @@ export const createBooking = async (params: CreateBookingParams) => {
   }
 
   // Criar booking no banco
-  const booking = await db.booking.create({
+  await db.booking.create({
     data: { 
       serviceId: params.serviceId,
       barbershopId: service.barbershopId,
@@ -38,13 +38,6 @@ export const createBooking = async (params: CreateBookingParams) => {
       clientName: params.clientName,
       clientPhone: params.clientPhone,
       date: params.date
-    },
-    include: {
-      service: {
-        include: {
-          barbershop: true
-        }
-      }
     }
   })
 
